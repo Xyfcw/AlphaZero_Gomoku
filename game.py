@@ -76,6 +76,7 @@ class Board(object):
 
     def do_move(self, move):
         self.states[move] = self.current_player
+        # 象棋得计算
         self.availables.remove(move)
         self.current_player = (
             self.players[0] if self.current_player == self.players[1]
@@ -195,6 +196,8 @@ class Game(object):
         p1, p2 = self.board.players
         states, mcts_probs, current_players = [], [], []
         while True:
+            # 没有end就一直下
+            # MCTSplayer就一个（一局）
             move, move_probs = player.get_action(self.board,
                                                  temp=temp,
                                                  return_prob=1)
